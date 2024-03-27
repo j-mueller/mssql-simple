@@ -13,6 +13,7 @@ module Database.MSSQLServer.Query.RpcResponseSet ( RpcResponseSet (..)
 
 
 import Control.Applicative(Alternative((<|>)),many,(<$>))
+import Control.Monad.Trans.Class (MonadTrans(lift))
 import Database.Tds.Message
 import Database.MSSQLServer.Query.Row
 import Database.MSSQLServer.Query.Only

@@ -1,0 +1,14 @@
+
+index-state:
+  , hackage.haskell.org 2024-03-27T13:37:06Z
+
+with-compiler: ghc-9.6.4
+
+packages:
+  .
+
+source-repository-package
+  type: git
+  location: https://github.com/j-mueller/ms-tds
+  tag: e7d3b81a09c9101891e479662c4876c6ee9ee712
+  --sha256: 0gpqkbwgmaws2irk6an3mkwrb4ig9ph3h7df3q5s6rndq8az7c2d

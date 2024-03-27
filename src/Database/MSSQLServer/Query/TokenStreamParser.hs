@@ -46,7 +46,7 @@ instance Functor Parser where
   fmap f p = Parser $ \xs -> [(f x,xs') | (x,xs') <- parse p xs]
 
 instance Applicative Parser where
-  pure = return
+  pure x = Parser $ \xs -> [(x,xs)]
   (<*>) = ap
 
 instance Alternative Parser where
@@ -54,7 +54,6 @@ instance Alternative Parser where
   (<|>) = mplus
 
 instance Monad Parser where
-  return x = Parser $ \xs -> [(x,xs)]
   p >>= f  = Parser $ \ts -> mconcat [parse (f t) ts' | (t,ts') <- parse p ts]
 
 instance MonadPlus Parser where
