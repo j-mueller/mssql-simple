@@ -38,6 +38,8 @@ import qualified Data.Text.Encoding as T
 import qualified Data.Binary.Put as Put
 import qualified Data.Binary.Get as Get
 
+import qualified Numeric
+
 import Control.Monad (when)
 import Control.Exception (Exception(..),throwIO)
 
@@ -119,7 +121,7 @@ connect ci@(ConnectInfo host port _ _ _ encrypt ps _ _ _ _ _ _ _ _ _) = do
   PLOMars modeMars:_ <- case filter isPLOMars plResOpts of
                           [] -> throwIO $ ProtocolError "connect: PLOMars is necessary"
                           xs -> return xs
-  when (modeEnc/=encrypt)  $ throwIO $ ProtocolError "connect: Server reported unsupported encryption mode"
+  when (modeEnc/=encrypt)  $ throwIO $ ProtocolError $ "connect: Server reported unsupported encryption mode: 0x" <> Numeric.showHex modeEnc ""
   when (modeMars/=0) $ throwIO $ ProtocolError "connect: Server reported unsupported mars mode"
 
   login7 <- newLogin7 ci
